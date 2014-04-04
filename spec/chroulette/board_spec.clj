@@ -98,10 +98,10 @@
         {:position [7 8] :king false}]}
       (new-board))))
 
-(describe "piece-on?"
+(describe "piece-on-position?"
   (it "returns true if piece on position"
-    (should (piece-on? {:position [2 3]} [2 3]))
-    (should-not (piece-on? {:position [2 3]} [2 5]))))
+    (should (piece-on-position? {:position [2 3]} [2 3]))
+    (should-not (piece-on-position? {:position [2 3]} [2 5]))))
 
 (describe "has-piece?"
   (it "returns true if board has piece on position"

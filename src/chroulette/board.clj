@@ -57,13 +57,13 @@
   {:white (initial-pieces :white)
    :black (initial-pieces :black)})
 
-(defn piece-on?
+(defn piece-on-position?
   [piece position]
   (= (piece :position) position))
 
 (defn has-piece?
   [position board]
-  (defn piece-on-position? [piece] (piece-on? piece position))
+  (defn piece-on-the-position? [piece] (piece-on-position? piece position))
   (or
-    (some piece-on-position? (board :white))
-    (some piece-on-position? (board :black))))
+    (some piece-on-the-position? (board :white))
+    (some piece-on-the-position? (board :black))))
