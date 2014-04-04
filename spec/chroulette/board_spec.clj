@@ -98,4 +98,34 @@
         {:position [7 8] :king false}]}
       (new-board))))
 
+(describe "piece-on?"
+  (it "returns true if piece on position"
+    (should (piece-on? {:position [2 3]} [2 3]))
+    (should-not (piece-on? {:position [2 3]} [2 5]))))
+
+(describe "has-piece?"
+  (it "returns true if board has piece on position"
+    (should
+      (has-piece?
+        [5 4]
+        {:white
+         [{:position [2 1] :king false}
+          {:position [4 1] :king false}
+          {:position [5 4] :king false}]
+        :black
+         [{:position [1 6] :king false}
+          {:position [3 6] :king false}
+          {:position [7 8] :king false}]}))
+    (should-not
+      (has-piece?
+        [5 4]
+        {:white
+         [{:position [2 1] :king false}
+          {:position [4 1] :king false}
+          {:position [6 1] :king false}]
+        :black
+         [{:position [1 6] :king false}
+          {:position [3 6] :king false}
+          {:position [7 8] :king false}]}))))
+
 (run-specs)

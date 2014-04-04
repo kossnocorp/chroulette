@@ -56,3 +56,14 @@
 (defn new-board []
   {:white (initial-pieces :white)
    :black (initial-pieces :black)})
+
+(defn piece-on?
+  [piece position]
+  (= (piece :position) position))
+
+(defn has-piece?
+  [position board]
+  (defn piece-on-position? [piece] (piece-on? piece position))
+  (or
+    (some piece-on-position? (board :white))
+    (some piece-on-position? (board :black))))
