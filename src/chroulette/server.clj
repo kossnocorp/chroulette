@@ -1,12 +1,13 @@
 (ns chroulette.server
-  (:use compojure.core)
-  (:require [compojure.handler :as handler]
-            [compojure.route :as route]))
+  (:use [compojure.route :only [files not-found]]
+        [compojure.handler :only [site]]
+        [compojure.core :only [defroutes GET POST DELETE ANY context]]
+        org.httpkit.server)
+  (:gen-class :main true))
 
 (defroutes app-routes
   (GET "/" [] "Hello World")
-  (route/resources "/")
-  (route/not-found "Not Found"))
+  (not-found "Not Found"))
 
-(def app
-  (handler/site app-routes))
+(defn -main []
+  (run-server (site #'app-routes) {:port 8080}))
