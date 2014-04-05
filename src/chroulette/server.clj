@@ -11,9 +11,9 @@
   (page/html5
     [:head
       [:title "Chroullete — play russian chekers with random person"]
-      (page/include-js "/js/app.js")]
     [:body
-      [:h1 "Chroullete"]]))
+      (page/include-js "http://fb.me/react-0.10.0.js")
+      (page/include-js "/js/app.js")]]))
 
 (defroutes app-routes
   (GET "/" [] (html-template))

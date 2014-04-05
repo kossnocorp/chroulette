@@ -1,3 +1,11 @@
-(ns chroulette.core-cljs)
+(ns chroulette.core-cljs
+  (:require [om.core :as om :include-macros true]
+            [om.dom :as dom :include-macros true]))
 
-(js/alert "Hello cruel world!")
+(defn widget
+  [data]
+  (om/component
+    (dom/h1 nil "Hello world!")))
+
+(om/root widget {}
+  {:target (.-body js/document)})
