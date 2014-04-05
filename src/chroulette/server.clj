@@ -3,10 +3,18 @@
         [compojure.handler :only [site]]
         [compojure.core :only [defroutes GET POST DELETE ANY context]]
         org.httpkit.server)
+  (:require [hiccup.core :as hiccup])
   (:gen-class :main true))
 
+(defn html-template []
+  (hiccup/html
+    [:head
+      [:title "Chroullete — play russian chekers with random person"]]
+    [:body
+      [:h1 "Chroullete"]]))
+
 (defroutes app-routes
-  (GET "/" [] "Hello World")
+  (GET "/" [] (html-template))
   (not-found "Not Found"))
 
 (defn -main []
