@@ -5,7 +5,8 @@
                  [ring/ring-devel "1.1.8"]
                  [http-kit "2.1.16"]
                  [hiccup "1.0.5"]
-                 [om "0.5.3"]]
+                 [om "0.5.3"]
+                 [sablono "0.2.15"]]
   :main chroulette.server
   :profiles {:dev {:dependencies [[speclj "3.0.2"]
                                   [javax.servlet/servlet-api "2.5"]
