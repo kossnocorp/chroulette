@@ -1,7 +1,6 @@
 (defproject chroulette "0.1.0"
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [compojure "1.1.6"]]
-  ;:main chroulette.server
   :profiles {:dev {:dependencies [[speclj "3.0.2"]
                                   [javax.servlet/servlet-api "2.5"]
                                   [ring-mock "0.1.5"]]}}
