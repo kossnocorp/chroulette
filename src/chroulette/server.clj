@@ -1,8 +1,9 @@
 (ns chroulette.server
-  (:use [compojure.handler :only [site]]
-        [compojure.core :only [defroutes GET POST DELETE ANY context]]
-        org.httpkit.server)
-  (:require [compojure.route :as route]
+  (:use [compojure.core :only [defroutes GET POST DELETE ANY context]]
+        [compojure.handler :only [site]]
+        [org.httpkit.server :only [run-server]])
+  (:require [ring.middleware.reload :as reload]
+            [compojure.route :as route]
             [hiccup.core :as hiccup]
             [hiccup.page :as page])
   (:gen-class :main true))
@@ -12,6 +13,8 @@
     [:head
       [:title "Chroullete — play russian chekers with random person"]
     [:body
+      [:h1 "Chroullete"]
+      [:div {:id "app"} "Loading..."]
       (page/include-js "http://fb.me/react-0.10.0.js")
       (page/include-js "/js/app.js")]]))
 
@@ -20,5 +23,10 @@
   (route/resources "/")
   (route/not-found "Not Found"))
 
+(defn in-dev? [] true)
+
 (defn -main []
-  (run-server (site #'app-routes) {:port 8080}))
+  (let [handler (if (in-dev?)
+                  (reload/wrap-reload (site #'app-routes))
+                  (site app-routes))]
+    (run-server handler {:port 8080})))

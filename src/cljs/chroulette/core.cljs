@@ -5,7 +5,7 @@
 (defn widget
   [data]
   (om/component
-    (dom/h1 nil "Hello world!")))
+    (dom/h2 nil "Hello world!")))
 
 (om/root widget {}
-  {:target (.-body js/document)})
+  {:target (.getElementById js/document "app")})
